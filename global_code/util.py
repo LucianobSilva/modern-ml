@@ -8,7 +8,8 @@ from sklearn.calibration import calibration_curve
 import seaborn as sns
 import shap
 import matplotlib.pyplot as plt
-
+from matplotlib.offsetbox import AnnotationBbox, TextArea
+from matplotlib.ticker import FormatStrFormatter
 
 def reduce_mem_usage(df, verbose=False):
     start_mem = df.memory_usage().sum() / 1024**2
@@ -125,6 +126,72 @@ def plot_dis_probs(y_score, y_true):
     plt.title('Distribution of Predicted Probabilities for Churn vs Non-Churn')
     plt.legend()
     plt.show()
+
+
+def plot_prediction_intervals(
+    title,
+    axs,
+    y_test_sorted,
+    y_pred_sorted,
+    lower_bound,
+    upper_bound,
+    coverage,
+    width,
+    num_plots_idx
+):
+    """
+    Plot of the prediction intervals for each different conformal
+    method.
+    """
+    round_to = 3
+    axs.yaxis.set_major_formatter(FormatStrFormatter('%.0f' + "k"))
+    axs.xaxis.set_major_formatter(FormatStrFormatter('%.0f' + "k"))
+
+    lower_bound_ = np.take(lower_bound, num_plots_idx)
+    y_pred_sorted_ = np.take(y_pred_sorted, num_plots_idx)
+    y_test_sorted_ = np.take(y_test_sorted, num_plots_idx)
+
+    error = y_pred_sorted_-lower_bound_
+
+    warning1 = y_test_sorted_ > y_pred_sorted_+error
+    warning2 = y_test_sorted_ < y_pred_sorted_-error
+    warnings = warning1 + warning2
+    axs.errorbar(
+        y_test_sorted_[~warnings],
+        y_pred_sorted_[~warnings],
+        yerr=np.abs(error[~warnings]),
+        capsize=5, marker="o", elinewidth=2, linewidth=0,
+        label="Inside prediction interval"
+        )
+    axs.errorbar(
+        y_test_sorted_[warnings],
+        y_pred_sorted_[warnings],
+        yerr=np.abs(error[warnings]),
+        capsize=5, marker="o", elinewidth=2, linewidth=0, color="red",
+        label="Outside prediction interval"
+        )
+    axs.scatter(
+        y_test_sorted_[warnings],
+        y_test_sorted_[warnings],
+        marker="*", color="green",
+        label="True value"
+    )
+    axs.set_xlabel("True house prices in $")
+    axs.set_ylabel("Prediction of house prices in $")
+    ab = AnnotationBbox(
+        TextArea(
+            f"Coverage: {np.round(coverage, round_to)}\n"
+            + f"Interval width: {np.round(width, round_to)}"
+        ),
+        xy=(np.min(y_test_sorted_)*3, np.max(y_pred_sorted_+error)*0.95),
+        )
+    lims = [
+        np.min([axs.get_xlim(), axs.get_ylim()]),  # min of both axes
+        np.max([axs.get_xlim(), axs.get_ylim()]),  # max of both axes
+    ]
+    axs.plot(lims, lims, '--', alpha=0.75, color="black", label="x=y")
+    axs.add_artist(ab)
+    axs.set_title(title, fontweight='bold')
 
 def plot_shap_values(shap_values, X_test, figsize=(10, 12), type='bar'):
     #plt.figure(figsize=figsize)

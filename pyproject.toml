@@ -20,4 +20,5 @@ dependencies = [
     "fasttreeshap>=0.1.6",
     "tqdm>=4.67.1",
     "venn-abers>=1.4.6",
+    "kagglehub>=0.3.6",
 ]

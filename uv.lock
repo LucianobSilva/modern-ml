@@ -1134,6 +1134,20 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/66/e3/c775e2213bac0ac1f1fd601d1c915d13934c5944cbff153ede6584acab50/kaggle-1.6.17.tar.gz", hash = "sha256:439a7dea1d5039f320fd6ad5ec21b688dcfa70d405cb42095b81f41edc401b81", size = 82692 }
 
 [[package]]
+name = "kagglehub"
+version = "0.3.6"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "packaging" },
+    { name = "requests" },
+    { name = "tqdm" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/0c/90/66b0b0202e64ddea6dac41d9a463b4110c28ef95d7b32be28967d714b9d9/kagglehub-0.3.6.tar.gz", hash = "sha256:3e9485f8ff59d87d1055f1cb22369ffd943826492ff586368ba1934a58c11291", size = 89808 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/99/62/5fc1fc324860dd1b1d17b750bae2a41305a4780dab7a2acfb1fec84665d9/kagglehub-0.3.6-py3-none-any.whl", hash = "sha256:fac03aeb53cb75ab1d0ed464eb2198d022548c0589983d2e061323db5816ff52", size = 51926 },
+]
+
+[[package]]
 name = "kiwisolver"
 version = "1.4.8"
 source = { registry = "https://pypi.org/simple" }
@@ -1442,6 +1456,7 @@ dependencies = [
     { name = "catboost" },
     { name = "fasttreeshap" },
     { name = "kaggle" },
+    { name = "kagglehub" },
     { name = "mapie" },
     { name = "mlflow" },
     { name = "nixtla" },
@@ -1460,6 +1475,7 @@ requires-dist = [
     { name = "catboost" },
     { name = "fasttreeshap", specifier = ">=0.1.6" },
     { name = "kaggle" },
+    { name = "kagglehub", specifier = ">=0.3.6" },
     { name = "mapie" },
     { name = "mlflow" },
     { name = "nixtla" },
