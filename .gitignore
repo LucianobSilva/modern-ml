@@ -175,6 +175,17 @@ week_1/data/raw/*
 week_1/data/processed/*
 case/data/raw/*
 case/data/processed/*
+case/data/solutions/*
+
+week_2/notebooks/catboost_info
+
+# Ignore all content of the week_3/data/raw and week_3/data/processed folders
+week_3/data/raw/*
+week_3/data/processed/*
+
+# Ignore MLflow content
+mlruns/
+catboost_info/
 
 # Keep the folders
 !week_1/data/raw/
