@@ -20,8 +20,4 @@ dependencies = [
     "fasttreeshap>=0.1.6",
     "tqdm>=4.67.1",
     "venn-abers>=1.4.6",
-    "kagglehub>=0.3.6",
-    "python-bcb>=0.3.0",
-    "mlforecast>=1.0.1",
-    "statsforecast>=2.0.0",
 ]

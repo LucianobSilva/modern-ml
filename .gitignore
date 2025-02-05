@@ -187,6 +187,12 @@ week_3/data/processed/*
 mlruns/
 catboost_info/
 
+week_2/notebooks/catboost_info
+
+# Ignore MLflow content
+mlruns/
+catboost_info/
+
 # Keep the folders
 !week_1/data/raw/
 !week_1/data/processed/
