@@ -6,7 +6,7 @@ Lending Club is a peer-to-peer lending platform that allows borrowers to obtain 
 **About the dataset**
 The Lending Club loan dataset is a collection of information on loans issued through the Lending Club platform. The dataset includes information on the borrower, such as credit score, income, and employment history, as well as details about the loan, including the loan amount, interest rate, and loan status. The dataset also includes information on the loan's purpose and the borrower's credit history.
 
----
+---630545
 
 ## Objective
 
