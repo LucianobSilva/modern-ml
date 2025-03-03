@@ -21,56 +21,75 @@
 - Define the Target and data splits 
   - Business knowledge??
 - Define period splits (Train, Validation, Test)
-- Created Full dataset in (processed)
+- Created full dataset in (processed)
 
 
 ## 3. Feature Engineering
-- Feature selection (e.g., Recursive Feature Elimination, L1 Regularization)
-- Feature creation (e.g., debt-to-income ratio)
-- Dimensionality reduction (e.g., PCA)
-  - Tools: Scikit-learn, XGBoost, LightGBM
+- Read full dataset (processed)
+- Feature creation (e.g., days_between, customer_ag,converts some boolean columns to integers )
+- Created Categories 
+- Window Features
+- Lifetime Features
+- Target Definition
+- Created new dataset considering the steps of Data Engineering (processed)
 
-## 5. Model Selection
-- Supervised learning algorithms
-  - Logistic Regression
-  - Decision Trees
-  - Random Forest
-  - Gradient Boosting (XGBoost, LightGBM, CatBoost)
-  - Support Vector Machines (SVM)
-  - Neural Networks (if applicable)
-- Unsupervised learning (for anomaly detection)
-  - K-Means, DBSCAN
-- Tools: Scikit-learn, XGBoost, LightGBM, Keras, TensorFlow
 
-## 6. Model Training
-- Train-Test Split (80-20 or cross-validation)
-- Hyperparameter tuning (Grid Search, Random Search, Bayesian Optimization)
-- Cross-validation
-  - Tools: Scikit-learn, Hyperopt, Optuna
+## 4. Sample date Split
+- Read full dataset considering the steps of Data Engineering  (processed)
+- Created range Target splits definition
+- Features Loading (Necessary for model)
+- Save partition split files (Train, Validation and Test)
 
-## 7. Model Evaluation
-- Metrics: Accuracy, AUC, Precision, Recall, F1-score, ROC Curve
-- Confusion matrix
-- Calibration of probabilities
-  - Tools: Scikit-learn, Matplotlib, Seaborn
 
-## 8. Model Interpretation
-- Feature importance
-- SHAP (SHapley Additive exPlanations)
-- LIME (Local Interpretable Model-agnostic Explanations)
-- Tools: SHAP, LIME
+## 5. Feature Selection
+- Read all split files (Train, Validation and Test)
+- Split Data (Drop targets)
+- Train a Vanilla Base CatBoost Model
+  - Train Model
+  - Model evaluation (Metrics report (ROC AUC, Brier Score,        Average Precision, and Log Loss))
+  - Precision- Recall Curve and Calibration Curve
+  - SHAP Values
+- Feature Selection with Boruta
+  - Select important features
+  - Save Select Features
+- Train a CatBoost Model with Selected Features
+  - Train Model
+  - Model evaluation (Metrics report (ROC AUC, Brier Score,        Average Precision, and Log Loss))
+  - Precision- Recall Curve and Calibration Curve
+  - SHAP Values
+- Comparison
+  - Compares the performance of the baseline model and the model with selected features.
+- Save Models
+  - Base Model and Model with Selection features 
 
-## 9. Model Deployment
-- Deploy in production (API, batch processing)
-- Monitoring and updating models
-  - Tools: Flask, FastAPI, Docker, Kubernetes, ModelDB
+## 6. Tuning
+- Read all split files (Train, Validation and Test) 
+- Manual Tuning
+- Perform Optuna Hyperparameter Tuning
+  - Hyperparameter tuning for the CatBoost model.
+- Process (Saves the best hyperparameters)
+- Retrain the model with the Best Parameters
+  - Load Best Hyperparameters
+  - Train Model
+  - Model evaluation (Metrics report (ROC AUC, Brier Score,        Average Precision, and Log Loss))
+  - Plot Distribution
+  - Precision- Recall Curve and Calibration Curve
+  - SHAP Values
 
-## 10. Model Maintenance
-- Retrain models periodically
-- Check for concept drift (change in data distribution)
-- Tools: AWS Sagemaker, MLflow, Airflow
+- Comparing the models
+  - Baseline Model Metrics
+  - Feature Selection Model Metrics
+  - Tuned Model Metrics
+- Save the model trained with selected features
 
-## 11. Compliance & Ethical Considerations
-- Fairness (avoid bias, equal opportunity)
-- Interpretability and explainability
-- Regulatory requirements (GDPR, FCRA)
+
+## 7. Calibration
+- Read all split files (Train, calibration, test)
+- load baseline and feature selection models. 
+- Calibrate model using (Platt scaling)
+  - Sigmoid and isotonic regression
+  - Compute metrics
+- Calibrate the model using Venn-Abers
+  - Compute metrics
+- Compare Models
+
