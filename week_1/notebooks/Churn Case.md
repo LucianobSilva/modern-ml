@@ -7,27 +7,24 @@
     No Churn = 1
 
 
-## 1. Problem Definition
-- Objective: Define the Target ? How ? 
+## 1. First look Data
+- Read All files or databases historical (raw)
+- Simple data describe
+  - Handle missing values
+  - Feature scaling (Normalization, Standardization)
+  - Outlier detection
 
-- Define success metrics: Accuracy, AUC, Precision, Recall
 
-## 2. Data Collection
-- Financial data (income, debt, etc.)
-- Customer data (age, job, history)
-- Historical default data
-- Tools: SQL, APIs, Web scraping
+## 2. Churn Definition (Data Centric)
+- Read All files or databases historical (raw)
+- Merging Train Data and Test data (Full dataset)
+- Define the Target and data splits 
+  - Business knowledge??
+- Define period splits (Train, Validation, Test)
+- Created Full dataset in (processed)
 
-## 3. Data Preprocessing
-- Handle missing values
-  - Tools: Pandas, NumPy
-- Feature scaling (Normalization, Standardization)
-- Categorical encoding (One-Hot, Label Encoding)
-  - Tools: Scikit-learn, pandas
-- Outlier detection
-  - Tools: Z-scores, IQR methods
 
-## 4. Feature Engineering
+## 3. Feature Engineering
 - Feature selection (e.g., Recursive Feature Elimination, L1 Regularization)
 - Feature creation (e.g., debt-to-income ratio)
 - Dimensionality reduction (e.g., PCA)
