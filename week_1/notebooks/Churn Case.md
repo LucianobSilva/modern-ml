@@ -4,7 +4,7 @@
   
   - Binary Classification Problem:
     Churn = 1
-    No Churn = 1
+    No Churn = 0
 
 
 ## 1. First look Data
