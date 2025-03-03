@@ -1,8 +1,8 @@
 # Machine Learning in Churn Case
 - The bank, facing increasing competition, is concerned about customer churn but lacks both a formal churn definition and mature data practices. As a newly hired data scientist,    
     you’re responsible for creating a clear churn definition, implementing it, and using data to accurately predict churn—an effort previously unaddressed with only initial, informal behavioral rules providing limited insights.
-
-- Binary Classification Problem:
+  
+  - Binary Classification Problem:
     Churn = 1
     No Churn = 1
 
@@ -46,7 +46,7 @@
 - Split Data (Drop targets)
 - Train a Vanilla Base CatBoost Model
   - Train Model
-  - Model evaluation (Metrics report (ROC AUC, Brier Score,        Average Precision, and Log Loss))
+  - Model evaluation (Metrics report (ROC AUC, Brier Score, Average Precision, and Log Loss))
   - Precision- Recall Curve and Calibration Curve
   - SHAP Values
 - Feature Selection with Boruta
@@ -54,7 +54,7 @@
   - Save Select Features
 - Train a CatBoost Model with Selected Features
   - Train Model
-  - Model evaluation (Metrics report (ROC AUC, Brier Score,        Average Precision, and Log Loss))
+  - Model evaluation (Metrics report (ROC AUC, Brier Score, Average Precision, and Log Loss))
   - Precision- Recall Curve and Calibration Curve
   - SHAP Values
 - Comparison
